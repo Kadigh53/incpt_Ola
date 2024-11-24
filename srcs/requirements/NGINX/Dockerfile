@@ -1,7 +1,7 @@
-FROM debian:bullseye-slim 
+FROM debian:bullseye
 
 RUN apt update \
-    && apt install -y nginx openssl curl vim \
+    && apt install -y nginx openssl \
     && mkdir -p /etc/nginx/ssl \
     && openssl req -x509 -nodes -out /etc/nginx/ssl/kadighsslCertifecate.crt -keyout /etc/nginx/ssl/kadighsslCertifecate.key \
     -subj "/C=MA/ST=KH/L=Khouribga/O=42/OU=42/CN=aaoutem-.42.fr/UID=aaoutem-"

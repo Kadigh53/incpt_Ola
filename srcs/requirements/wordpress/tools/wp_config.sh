@@ -1,15 +1,20 @@
 #!/bin/bash
 
-# sleep 15
+sleep 5
+
 echo "Waiting for database connection..."
-until nc -z -v -w30 mariadb 3306
+until nc -z -v -w30 mariadb 3306 2>/dev/null
 do
     echo "Waiting for database connection..."
     sleep 1
 done
 
+chmod -R 755 /var/www/wordpress
+chown -R www-data:www-data /var/www/wordpress
+
 WP_CONF_FILE="/var/www/wordpress/wp-config.php"
-WP_PATH="/var/www/wordpress"
+
+wp core download --allow-root
 
 if [ ! -f "$WP_CONF_FILE" ]; then
     wp config create --allow-root \
@@ -22,10 +27,9 @@ if [ ! -f "$WP_CONF_FILE" ]; then
 fi
 
 if ! wp core is-installed --allow-root ; then
-    # WP is not installed. Let's try installing it.
 
     wp core install --allow-root \
-        --url=https://aaoutem-.42.fr \
+        --url="${DOMAINE_NAME}" \
         --title="Inception" \
         --admin_user="$ADMIN_USER" \
         --admin_password="$ADMIN_PASSWORD" \
@@ -34,8 +38,8 @@ if ! wp core is-installed --allow-root ; then
     wp user create --allow-root \
         "$USER1" "$USER1_EMAIL" --role=author --user_pass="$USER1_PASSWORD"
 
-    wp option update siteurl https://aaoutem-.42.fr --allow-root
-    wp option update home https://aaoutem-.42.fr --allow-root
+    wp option update siteurl ${DOMAINE_NAME} --allow-root
+    wp option update home ${DOMAINE_NAME} --allow-root
 
     wp rewrite flush --allow-root
 
