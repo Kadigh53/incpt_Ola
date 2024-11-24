@@ -1,0 +1,18 @@
+server  {
+
+        listen 443 ssl;
+
+        ssl_protocols TLSv1.3;
+        ssl_certificate /etc/nginx/ssl/kadighsslCertifecate.crt;
+        ssl_certificate_key /etc/nginx/ssl/kadighsslCertifecate.key;
+
+        root /var/www/wordpress;
+        server_name $DOMAINE_NAME;
+
+        index index.php;
+
+        location ~ \.php$ {
+            include snippets/fastcgi-php.conf;
+            fastcgi_pass wordpress:9000;
+        }
+}
