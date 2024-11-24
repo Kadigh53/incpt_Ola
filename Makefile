@@ -35,11 +35,11 @@ stop:
 start:
 	docker-compose -f ./srcs/docker-compose.yml start
 
-prune:
+clean:
 	docker stop $(docker ps -aq) || true
 	docker rm -f $(docker ps -aq) || true
 	@rm -rf $(wpVolumeDir)
 	@rm -rf $(dbVolumeDir)
-	docker system prune -a || true
 
-re : prune build
+
+re : clean build
