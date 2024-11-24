@@ -6,12 +6,12 @@
 #    By: aaoutem- <aaoutem-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/26 18:07:58 by aaoutem-          #+#    #+#              #
-#    Updated: 2024/11/24 21:21:32 by aaoutem-         ###   ########.fr        #
+#    Updated: 2024/11/24 23:10:28 by aaoutem-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-wpVolumeDir = ${HOME}/data/wordpressvolume
-dbVolumeDir = ${HOME}/data/mariadbvolume
+wpVolumeDir = /home/aaoutem-/data/wordpressvolume
+dbVolumeDir = /home/aaoutem-/data/mariadbvolume
 
 all : run
 

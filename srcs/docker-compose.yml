@@ -49,10 +49,10 @@ volumes:
         driver_opts:
             type: none
             o: bind
-            device: ${HOME}/data/wordpressvolume
+            device: /home/aaoutem-/data/wordpressvolume
     mariadb:
         driver: local
         driver_opts:
             type: none
             o: bind
-            device: ${HOME}/data/mariadbvolume
+            device: /home/aaoutem-/data/mariadbvolume
